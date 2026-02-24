@@ -22,23 +22,27 @@ def data_verification(options): #Data verification
             print("Invalid option\n")
 
 #-------------------------------------------------------------
-secret_pokemon_num = randint(1, 152)
+pokemon_num = randint(1, 152)
 
-data = create_data("pokemon", secret_pokemon_num)
+data = create_data("pokemon", pokemon_num)
 type1 = data["types"][0]["type"]["name"]
 type2 = data["types"][-1]["type"]["name"]
 
 if type1 == type2: #Mono-type
     type2 = "None"
 
+base_stat_total = []
+for stat in data["stats"]:
+    base_stat_total.append(stat["base_stat"])
 
-secret_pokemon_data = {
+pokemon_data = {
     "name": data["name"].replace("-", " "),
     "type 1": type1,
     "type 2": type2,
-    
+    "bst": sum(base_stat_total)
     }
 
-print(secret_pokemon_data["name"])
-print(secret_pokemon_data["type 1"])
-print(secret_pokemon_data["type 2"])
+print(pokemon_data["name"])
+print(pokemon_data["type 1"])
+print(pokemon_data["type 2"])
+print(pokemon_data["bst"])
