@@ -1,4 +1,3 @@
-from random import randint
 import requests
 
 def create_data(search_type, search): #Sends data to the functions that called it
@@ -10,39 +9,24 @@ def create_data(search_type, search): #Sends data to the functions that called i
     return requested.json()
 
 #-------------------------------------------------------------
-def data_verification(options): #Data verification
-    while True:
-        try:
-            action = int(input("Option: "))
-            if action not in options:
-                raise ValueError
-            return action
+def search_pokemon(pokemon_num):
+    data = create_data("pokemon", pokemon_num)
+    type1 = data["types"][0]["type"]["name"]
+    type2 = data["types"][-1]["type"]["name"]
 
-        except ValueError:
-            print("Invalid option\n")
+    if type1 == type2: #Mono-type
+        type2 = "None"
 
-#-------------------------------------------------------------
-pokemon_num = randint(1, 152)
+    base_stat_total = []
+    for stat in data["stats"]:
+        base_stat_total.append(stat["base_stat"])
 
-data = create_data("pokemon", pokemon_num)
-type1 = data["types"][0]["type"]["name"]
-type2 = data["types"][-1]["type"]["name"]
-
-if type1 == type2: #Mono-type
-    type2 = "None"
-
-base_stat_total = []
-for stat in data["stats"]:
-    base_stat_total.append(stat["base_stat"])
-
-pokemon_data = {
-    "name": data["name"].replace("-", " "),
-    "type 1": type1,
-    "type 2": type2,
-    "bst": sum(base_stat_total)
-    }
-
-print(pokemon_data["name"])
-print(pokemon_data["type 1"])
-print(pokemon_data["type 2"])
-print(pokemon_data["bst"])
+    pokemon_data = {
+        "name": data["name"].replace("-", " "),
+        "type 1": type1,
+        "type 2": type2,
+        "bst": sum(base_stat_total),
+        "height": data["height"] / 10,
+        "weight": data["weight"] / 10
+        }
+    return pokemon_data
