@@ -5,7 +5,11 @@ def game():
     pokemon_num = randint(1, 151)
     secret_pokemon_data = search_pokemon(pokemon_num)
 
-    print(secret_pokemon_data["name"])
+    def text_comparasion(guess_text, secret_1, secret_2):
+        if guess_text == secret_1 or guess_text == secret_2:
+            print(f"{guess_text} -> ✓")
+        else:
+            print(f"{guess_text} -> X")
 
     def number_comparasion(guess_value, secret_value, unity):
         if guess_value == secret_value:
@@ -20,16 +24,17 @@ def game():
         guess_data = search_pokemon(guess)
 
         if guess_data["name"] == secret_pokemon_data["name"]: #Correct
-            print(f"{guess_data["type 1"]} -> ✓")
-            print(f"{guess_data["type 2"]} -> ✓")
-            print(f"{guess_data["color"]} -> ✓")
+            text_comparasion(guess_data["type 1"], secret_pokemon_data["type 1"], secret_pokemon_data["type 2"]) #Type 1
+            text_comparasion(guess_data["type 2"], secret_pokemon_data["type 1"], secret_pokemon_data["type 2"]) #Type 2
+            text_comparasion(guess_data["color"], secret_pokemon_data["color"], secret_pokemon_data["color"]) #Color
             number_comparasion(guess_data["bst"], secret_pokemon_data["bst"], "bst") #Bst
             number_comparasion(guess_data["height"], secret_pokemon_data["height"], "m") #Height
             number_comparasion(guess_data["weight"], secret_pokemon_data["weight"], "Kg") #Weight
             number_comparasion(guess_data["generation"], secret_pokemon_data["generation"], "º generation") #Generation
+
             while True:
                 try:
-                    replay = input("Play again (Y/N)? ").lower()
+                    replay = input("\nPlay again (Y/N)? ").lower()
                     if replay != "y" and replay != "n":
                         raise Exception
 
@@ -40,25 +45,12 @@ def game():
                     break #Break play again loop
                 except Exception:
                     print()
-
             break #Break main game loop
 
         else: #Incorrect
-            if guess_data["type 1"] == secret_pokemon_data["type 1"] or guess_data["type 1"] == secret_pokemon_data["type 2"]:
-                print(f"{guess_data["type 1"]} -> ✓")
-            else:
-                print(f"{guess_data["type 1"]} -> X")
-
-            if guess_data["type 2"] == secret_pokemon_data["type 1"] or guess_data["type 2"] == secret_pokemon_data["type 2"]:
-                print(f"{guess_data["type 2"]} -> ✓")
-            else:
-                print(f"{guess_data["type 2"]} -> X")
-
-            if guess_data["color"] == secret_pokemon_data["color"]:
-                print(f"{guess_data["color"]} -> ✓")
-            else:
-                print(f"{guess_data["color"]} -> X")
-
+            text_comparasion(guess_data["type 1"], secret_pokemon_data["type 1"], secret_pokemon_data["type 2"]) #Type 1
+            text_comparasion(guess_data["type 2"], secret_pokemon_data["type 1"], secret_pokemon_data["type 2"]) #Type 2
+            text_comparasion(guess_data["color"], secret_pokemon_data["color"], secret_pokemon_data["color"]) #Color
             number_comparasion(guess_data["bst"], secret_pokemon_data["bst"], "bst") #Bst
             number_comparasion(guess_data["height"], secret_pokemon_data["height"], "m") #Height
             number_comparasion(guess_data["weight"], secret_pokemon_data["weight"], "Kg") #Weight
