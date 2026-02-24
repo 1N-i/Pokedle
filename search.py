@@ -8,7 +8,6 @@ def create_data(search_type, search): #Sends data to the functions that called i
         return "error"
     return requested.json()
 
-#-------------------------------------------------------------
 def search_pokemon(pokemon_num):
     data_species = create_data("pokemon-species", pokemon_num)
     if data_species == "error": #Finish if nothing was found
@@ -21,8 +20,8 @@ def search_pokemon(pokemon_num):
     type1 = data["types"][0]["type"]["name"]
     type2 = data["types"][-1]["type"]["name"]
 
-    if type1 == type2: #Mono-type
-        type2 = "None"
+    if type1 == type2: #If it's Mono-type
+        type2 = "none"
 
     base_stat_total = []
     for stat in data["stats"]:

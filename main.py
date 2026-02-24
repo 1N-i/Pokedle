@@ -6,10 +6,6 @@ def game():
     secret_pokemon_data = search_pokemon(pokemon_num)
 
     print(secret_pokemon_data["name"])
-    print(secret_pokemon_data["type 1"])
-    print(secret_pokemon_data["type 2"])
-    print(secret_pokemon_data["color"])
-    print(secret_pokemon_data["bst"])
     print(f"{secret_pokemon_data["height"]} m")
     print(f"{secret_pokemon_data["weight"]} Kg")
 
@@ -17,7 +13,7 @@ def game():
         guess = input("Guess: ")
         guess_data = search_pokemon(guess)
 
-        if guess_data["name"] == secret_pokemon_data["name"]:
+        if guess_data["name"] == secret_pokemon_data["name"]: #Correct
             print("You're correct!")
             while True:
                 try:
@@ -34,7 +30,19 @@ def game():
                     print()
 
             break #Break main game loop
-        else:
-            print("n") #Make the comparator
+
+        else: #Incorrect
+            if guess_data["type 1"] == secret_pokemon_data["type 1"] or guess_data["type 1"] == secret_pokemon_data["type 2"]:
+                pass
+            if guess_data["type 2"] == secret_pokemon_data["type 1"] or guess_data["type 2"] == secret_pokemon_data["type 2"]:
+                pass
+            if guess_data["color"] == secret_pokemon_data["color"]:
+                pass
+            if guess_data["bst"] == secret_pokemon_data["bst"]:
+                pass
+            if guess_data["height"] == secret_pokemon_data["height"]:
+                pass
+            if guess_data["weight"] == secret_pokemon_data["weight"]:
+                pass
 
 game()
