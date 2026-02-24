@@ -8,6 +8,26 @@ def create_data(search_type, search): #Sends data to the functions that called i
         return "error"
     return requested.json()
 
+def gen_traslate(generation): #Switch the letter by numbers and region names
+    if generation == "generation-i":
+        return "1"
+    elif generation == "generation-ii":
+        return "2"
+    elif generation == "generation-iii":
+        return "3"
+    elif generation == "generation-iv":
+        return "4"
+    elif generation == "generation-v":
+        return "5"
+    elif generation == "generation-vi":
+        return "6"
+    elif generation == "generation-vii":
+        return "7"
+    elif generation == "generation-viii":
+        return "8"
+    elif generation == "generation-ix":
+        return "9"
+
 def search_pokemon(pokemon_num):
     data_species = create_data("pokemon-species", pokemon_num)
     if data_species == "error": #Finish if nothing was found
@@ -27,6 +47,8 @@ def search_pokemon(pokemon_num):
     for stat in data["stats"]:
         base_stat_total.append(stat["base_stat"])
 
+    generation = gen_traslate(data_species["generation"]["name"])
+
     pokemon_data = {
         "name": data["name"].replace("-", " "),
         "type 1": type1,
@@ -34,6 +56,7 @@ def search_pokemon(pokemon_num):
         "color": data_species["color"]["name"],
         "bst": sum(base_stat_total),
         "height": data["height"] / 10,
-        "weight": data["weight"] / 10
+        "weight": data["weight"] / 10,
+        "generation": generation
         }
     return pokemon_data
