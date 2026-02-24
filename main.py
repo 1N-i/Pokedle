@@ -1,23 +1,40 @@
 from search import search_pokemon
 from random import randint
 
-def data_verification(options): #Data verification
+def game():
+    pokemon_num = randint(1, 151)
+    secret_pokemon_data = search_pokemon(pokemon_num)
+
+    print(secret_pokemon_data["name"])
+    print(secret_pokemon_data["type 1"])
+    print(secret_pokemon_data["type 2"])
+    print(secret_pokemon_data["color"])
+    print(secret_pokemon_data["bst"])
+    print(f"{secret_pokemon_data["height"]} m")
+    print(f"{secret_pokemon_data["weight"]} Kg")
+
     while True:
-        try:
-            action = int(input("Option: "))
-            if action not in options:
-                raise ValueError
-            return action
+        guess = input("Guess: ")
+        guess_data = search_pokemon(guess)
 
-        except ValueError:
-            print("Invalid option\n")
+        if guess_data["name"] == secret_pokemon_data["name"]:
+            print("You're correct!")
+            while True:
+                try:
+                    i = input("Play again (Y/N)? ").lower()
+                    if i != "y" and i != "n":
+                        raise Exception
 
-pokemon_num = randint(1, 152)
-secret_pokemon_data = search_pokemon(pokemon_num)
+                    if i == "y":
+                        game()
+                    elif i == "n":
+                        print("Thanks for playing")
+                    break #Break play again loop
+                except Exception:
+                    print()
 
-print(secret_pokemon_data["name"])
-print(secret_pokemon_data["type 1"])
-print(secret_pokemon_data["type 2"])
-print(secret_pokemon_data["bst"])
-print(f"{secret_pokemon_data["height"]} m")
-print(f"{secret_pokemon_data["weight"]} Kg")
+            break #Break main game loop
+        else:
+            print("n") #Make the comparator
+
+game()
