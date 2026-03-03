@@ -4,7 +4,10 @@ def create_data(search_type, search): #Sends data to the functions that called i
     url_search = f"https://pokeapi.co/api/v2/{search_type}/{search}" #Link PokeAPI
     requested = requests.get(url_search)
     if requested.status_code == 404:
-        print(f"Error: '{search}' not found") #Finish if nothing was found
+        print(f"Error: '{search}' not found\n") #Finish if nothing was found
+        return "error"
+    if search == "":
+        print("Empty answer\n")
         return "error"
     return requested.json()
 
@@ -60,3 +63,35 @@ def search_pokemon(pokemon_num):
         "generation": generation
         }
     return pokemon_data
+
+def generation_filter():
+    from random import randint, choice
+
+    pokemon_numbers = {
+        1: [1, 151],
+        2: [152, 251],
+        3: [252, 386],
+        4: [387, 493],
+        5: [494, 649],
+        6: [650, 721],
+        7: [722, 809],
+        8: [810, 905],
+        9: [906, 1025]
+    }
+
+    options = list(range(1, 10))
+
+    while True:
+        try:
+            generation_choice = input("Which generations: ")
+            gens = [int(item) for item in generation_choice.split(",")]
+            for gen in gens:
+                if gen not in options:
+                    raise ValueError
+            break
+        except ValueError:
+            print("Invalid answer\n")
+
+    gen = choice(gens)
+    pokemon_number = randint(pokemon_numbers[gen][0], pokemon_numbers[gen][1])
+    return pokemon_number

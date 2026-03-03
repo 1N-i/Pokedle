@@ -1,8 +1,7 @@
-from search import search_pokemon
-from random import randint
+from search import search_pokemon, generation_filter
 
 def game():
-    pokemon_num = randint(1, 151)
+    pokemon_num = generation_filter()
     secret_pokemon_data = search_pokemon(pokemon_num)
 
     #print(secret_pokemon_data["name"]) #See the answer
@@ -22,7 +21,7 @@ def game():
             print(f"{guess_value} {unity} -> ↓")
 
     while True:
-        guess = input("Guess: ").lower()
+        guess = input("Guess: ").lower().strip()
         guess_data = search_pokemon(guess)
 
         if guess_data:
