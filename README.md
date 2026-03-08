@@ -49,8 +49,8 @@ The project is organized into specific modules:
 
 ## 🚀 How to Run
 
-- **Clone the repository:**
-Use the command below to clone the project and enter its folder:
+- **Install the requirements:**
+Use the command below to install the requirements:
 
 ```bash 
 pip install requests
