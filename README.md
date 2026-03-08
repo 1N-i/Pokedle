@@ -53,5 +53,4 @@ The project is organized into specific modules:
 Use the command below to clone the project and enter its folder:
 
 ```bash 
-git clone [https://github.com/SEU_USUARIO/NOME_DO_REPO.git](https://github.com/SEU_USUARIO/NOME_DO_REPO.git)
-cd NOME_DO_REPO
+pip install requests
