@@ -80,7 +80,6 @@ def generation_filter():
     }
 
     options = list(range(1, 10))
-
     while True:
         try:
             generation_choice = input("Which generations: ")

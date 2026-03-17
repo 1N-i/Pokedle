@@ -1,8 +1,10 @@
 from search import search_pokemon, generation_filter
 
 def game():
+    guesses = 0
     pokemon_num = generation_filter()
     secret_pokemon_data = search_pokemon(pokemon_num)
+    print("\nPut '0' to give up.\nAfter 3 guesses you can write 'hint' to get\n")
 
     #print(secret_pokemon_data["name"]) #See the answer
 
@@ -22,6 +24,12 @@ def game():
 
     while True:
         guess = input("Guess: ").lower().strip()
+        if guess == "0":
+            print(f"The Pokémon was: {secret_pokemon_data["name"]}")
+            print(f"{secret_pokemon_data["type 1"]}\n{secret_pokemon_data["type 2"]}\n{secret_pokemon_data["color"]}")
+            print(f"{secret_pokemon_data["bst"]} bst\n{secret_pokemon_data["height"]} m")
+            print(f"{secret_pokemon_data["weight"]} Kg\n{secret_pokemon_data["generation"]} º generation")
+            break
         guess_data = search_pokemon(guess)
 
         if guess_data:
@@ -57,6 +65,7 @@ def game():
                 number_comparasion(guess_data["height"], secret_pokemon_data["height"], "m") #Height
                 number_comparasion(guess_data["weight"], secret_pokemon_data["weight"], "Kg") #Weight
                 number_comparasion(guess_data["generation"], secret_pokemon_data["generation"], "º generation") #Generation
+                guesses += 1
                 print()
 
 game()
