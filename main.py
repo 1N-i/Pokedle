@@ -7,7 +7,7 @@ def game():
     secret_pokemon_data = search_pokemon(pokemon_num)
     print("\nPut '0' to give up.\nAfter 3 guesses you can write 'hint' to get\n")
 
-    print(secret_pokemon_data["name"]) #See the answer
+    #print(secret_pokemon_data["name"]) #See the answer
 
     def text_comparasion(guess_text, secret_1, secret_2):
         if guess_text == secret_1 or guess_text == secret_2:
@@ -58,7 +58,7 @@ def game():
                 number_comparasion(guess_data["height"], secret_pokemon_data["height"], "m") #Height
                 number_comparasion(guess_data["weight"], secret_pokemon_data["weight"], "Kg") #Weight
                 number_comparasion(guess_data["generation"], secret_pokemon_data["generation"], "º generation") #Generation
-
+                
                 while True:
                     try:
                         replay = input("Play again (Y/N)? ").lower()
