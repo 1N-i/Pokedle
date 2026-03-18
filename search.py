@@ -99,7 +99,7 @@ def pokemon_picker():
                 if gen not in options:
                     raise ValueError
             break
-        except ValueError:
+        except (ValueError, KeyboardInterrupt):
             print("Invalid answer\n")
 
     gen = choice(gens)
