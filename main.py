@@ -1,8 +1,8 @@
-from search import search_pokemon, generation_filter
+from search import search_pokemon, pokemon_picker
 
 def game():
     guesses = 0
-    pokemon_num = generation_filter()
+    pokemon_num = pokemon_picker()
     secret_pokemon_data = search_pokemon(pokemon_num)
     print("\nPut '0' to give up.\nAfter 3 guesses you can write 'hint' to get\n")
 
@@ -30,8 +30,11 @@ def game():
             print(f"{secret_pokemon_data["bst"]} bst\n{secret_pokemon_data["height"]} m")
             print(f"{secret_pokemon_data["weight"]} Kg\n{secret_pokemon_data["generation"]} º generation")
             break
-        guess_data = search_pokemon(guess)
 
+        if guess == "hint":
+            pass
+
+        guess_data = search_pokemon(guess)
         if guess_data:
             if guess_data["name"] == secret_pokemon_data["name"]: #Correct
                 text_comparasion(guess_data["type 1"], secret_pokemon_data["type 1"], secret_pokemon_data["type 2"]) #Type 1
@@ -47,7 +50,6 @@ def game():
                         replay = input("Play again (Y/N)? ").lower()
                         if replay != "y" and replay != "n":
                             raise Exception
-
                         if replay == "y":
                             game()
                         elif replay == "n":

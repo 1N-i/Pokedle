@@ -51,7 +51,6 @@ def search_pokemon(pokemon_num):
         base_stat_total.append(stat["base_stat"])
 
     generation = gen_traslate(data_species["generation"]["name"])
-
     pokemon_data = {
         "name": data["name"].replace("-", " "),
         "type 1": type1,
@@ -64,9 +63,11 @@ def search_pokemon(pokemon_num):
         }
     return pokemon_data
 
+def pokedex_entry_hint():
+    pass
+
 def generation_filter():
     from random import randint, choice
-
     pokemon_numbers = {
         1: [1, 151],
         2: [152, 251],
@@ -78,7 +79,7 @@ def generation_filter():
         8: [810, 905],
         9: [906, 1025]
     }
-
+    
     options = list(range(1, 10))
     while True:
         try:
