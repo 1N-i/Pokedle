@@ -1,8 +1,8 @@
-from search import search_pokemon, pokemon_picker
+from search import search_pokemon, pokemon_picker, pokedex_entry_hint
 
 def game():
     guesses = 0
-    pokemon_num = pokemon_picker()
+    pokemon_num = "reshiram" #pokemon_picker()
     secret_pokemon_data = search_pokemon(pokemon_num)
     print("\nPut '0' to give up.\nAfter 3 guesses you can write 'hint' to get\n")
 
@@ -32,7 +32,7 @@ def game():
             break
 
         if guess == "hint":
-            pass
+            pokedex_entry_hint(pokemon_num)
 
         guess_data = search_pokemon(guess)
         if guess_data:

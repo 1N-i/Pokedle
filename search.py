@@ -63,10 +63,20 @@ def search_pokemon(pokemon_num):
         }
     return pokemon_data
 
-def pokedex_entry_hint():
-    pass
+def pokedex_entry_hint(pokemon_num):
+    def en_entry():
+        while True:
+            for entry in data_species["flavor_text_entries"]:
+                if entry["language"]["name"] == "en":
+                    return entry["flavor_text"]
+                
+    data_species = create_data("pokemon-species", pokemon_num)
+    pokedex_entry_raw = en_entry().replace("\n", " ")
+    pokedex_entry_fixed = pokedex_entry_raw.replace(data_species["name"], "___")
+    pokedex_entry_fixed = pokedex_entry_fixed.replace(data_species["name"].upper(), "___")
+    print(pokedex_entry_fixed)
 
-def generation_filter():
+def pokemon_picker():
     from random import randint, choice
     pokemon_numbers = {
         1: [1, 151],
