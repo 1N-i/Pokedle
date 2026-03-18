@@ -2,11 +2,11 @@ from search import search_pokemon, pokemon_picker, pokedex_entry_hint
 
 def game():
     guesses = 3
-    pokemon_num = "absol" #pokemon_picker()
+    pokemon_num = pokemon_picker()
     secret_pokemon_data = search_pokemon(pokemon_num)
     print("\nPut '0' to give up.\nAfter 3 guesses you can write 'hint' to get\n")
 
-    #print(secret_pokemon_data["name"]) #See the answer
+    print(secret_pokemon_data["name"]) #See the answer
 
     def text_comparasion(guess_text, secret_1, secret_2):
         if guess_text == secret_1 or guess_text == secret_2:
@@ -30,13 +30,13 @@ def game():
 
         guess = input("Guess: ").lower().strip()
         if guess == "0":
-            print(f"The Pokémon was: {secret_pokemon_data["name"]}")
+            print(f"\nThe Pokémon was: {secret_pokemon_data["name"]}")
             print(f"{secret_pokemon_data["type 1"]}\n{secret_pokemon_data["type 2"]}\n{secret_pokemon_data["color"]}")
             print(f"{secret_pokemon_data["bst"]} bst\n{secret_pokemon_data["height"]} m")
             print(f"{secret_pokemon_data["weight"]} Kg\n{secret_pokemon_data["generation"]} º generation")
             break
 
-        if guess == "hint":
+        if guess == "hint" and guesses <= 0:
             pokedex_entry_hint(pokemon_num)
         else:
             guess_data = search_pokemon(guess)

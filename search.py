@@ -69,16 +69,11 @@ def pokedex_entry_hint(pokemon_num):
             for entry in data_species["flavor_text_entries"]:
                 if entry["language"]["name"] == "en":
                     return entry["flavor_text"]
-                
-    def entry_entry_cleaner(name, name_upper, name_lower):
-        pass
        
-    data_species = create_data("pokemon-species", pokemon_num) #"absol, ABSOL,\n Absol, \n\n bla bla bla"
-    pokemon_name = pokemon_num
-    pokemon_name_upper = pokemon_name.upper()
-    pokedex_entry_raw = en_entry().replace("\n\n", "\n")
+    data_species = create_data("pokemon-species", pokemon_num)
+    pokedex_entry_raw = en_entry().replace("\n\n", "\n").replace(data_species["name"].capitalize(), "___")
     pokedex_entry_fixed = pokedex_entry_raw.replace(data_species["name"], "___").replace("\n", " ")
-    pokedex_entry_fixed = pokedex_entry_fixed.replace(data_species["name"].upper(), "___")
+    pokedex_entry_fixed = pokedex_entry_fixed.replace(data_species["name"].upper(), "___").replace("\f", " ")
     print(pokedex_entry_fixed)
 
 def pokemon_picker():
