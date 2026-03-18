@@ -1,8 +1,8 @@
 from search import search_pokemon, pokemon_picker, pokedex_entry_hint
 
 def game():
-    guesses = 0
-    pokemon_num = "reshiram" #pokemon_picker()
+    guesses = 3
+    pokemon_num = "absol" #pokemon_picker()
     secret_pokemon_data = search_pokemon(pokemon_num)
     print("\nPut '0' to give up.\nAfter 3 guesses you can write 'hint' to get\n")
 
@@ -23,6 +23,11 @@ def game():
             print(f"{guess_value} {unity} -> ↓")
 
     while True:
+        if guesses > 0:
+            print(f"{guesses} guesses before unlocking the hint")
+        elif guesses <= 0:
+            print("Hint unlocked. \nWrite 'hint' to see the pokedex entry.")
+
         guess = input("Guess: ").lower().strip()
         if guess == "0":
             print(f"The Pokémon was: {secret_pokemon_data["name"]}")
@@ -33,8 +38,9 @@ def game():
 
         if guess == "hint":
             pokedex_entry_hint(pokemon_num)
+        else:
+            guess_data = search_pokemon(guess)
 
-        guess_data = search_pokemon(guess)
         if guess_data:
             if guess_data["name"] == secret_pokemon_data["name"]: #Correct
                 text_comparasion(guess_data["type 1"], secret_pokemon_data["type 1"], secret_pokemon_data["type 2"]) #Type 1
@@ -67,7 +73,7 @@ def game():
                 number_comparasion(guess_data["height"], secret_pokemon_data["height"], "m") #Height
                 number_comparasion(guess_data["weight"], secret_pokemon_data["weight"], "Kg") #Weight
                 number_comparasion(guess_data["generation"], secret_pokemon_data["generation"], "º generation") #Generation
-                guesses += 1
+                guesses -= 1
                 print()
 
 game()
