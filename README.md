@@ -22,8 +22,11 @@ A Python-based command-line game where you guess the secret Pokémon based on st
 
 ## ✨ Features
 - **Dynamic Filtering:** Choose which generations (1 through 9) you want to include in the pool.
-- **Smart Feedback System:** - **Text Attributes:** Checks for exact matches (Types, Color).
+- **Smart Feedback System:**
+  - **Text Attributes:** Checks for exact matches (Types, Color).
   - **Numeric Stats:** Tells you if the secret value is higher (↑) or lower (↓) than your guess.
+- **Hint System:** After 3 incorrect guesses, unlock the `'hint'` command to reveal the Pokémon's Pokédex entry (with the name censored).
+- **Give Up Option:** Enter `'0'` at any time to reveal the secret Pokémon and all its stats.
 - **Live Data:** Fetches up-to-date Pokémon info (BST, Height, Weight, Generation) directly from the API.
 - **Replayability:** Game loop allows for continuous play without restarting the script.
 
@@ -44,8 +47,10 @@ The project is organized into specific modules:
 5. Keep guessing until you find the secret Pokémon!
 
 ## 🔮 Future Improvements
-* [ ] "Give Up" option to reveal the answer.
-* [ ] Add a hint system that gives the pokedex entry after some tries.
+* [X] "Give Up" option to reveal the answer.
+* [X] Add a hint system that gives the pokedex entry after some tries.
+* [ ] Add a Graphical User Interface (GUI).
+* [ ] Difficulty selector (limiting the number of tries).
 
 ## 🚀 How to Run
 
